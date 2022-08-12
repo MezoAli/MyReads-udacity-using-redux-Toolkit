@@ -31,9 +31,7 @@ function Shelf({ title, books }) {
 												value={book.shelf}
 												onChange={(e) => handleChange(e, book)}
 											>
-												<option value="none" disabled>
-													Move to...
-												</option>
+												<option disabled>Move to...</option>
 												<option value="currentlyReading">
 													Currently Reading
 												</option>

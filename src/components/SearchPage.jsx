@@ -17,6 +17,9 @@ function SearchPage() {
 				const res = await BooksApi.search(search);
 				setBooks(res);
 			}
+			if (search.trim() === "") {
+				setBooks([]);
+			}
 		} catch (error) {
 			alert(error.message);
 		}
@@ -48,12 +51,12 @@ function SearchPage() {
 						}}
 					/>
 				</div>
-				{console.log(shlvesBooks)}
 			</div>
 			<div className="search-books-results">
 				{console.log(books)}
 				<ol className="books-grid">
 					{books.length >= 1 &&
+						search &&
 						books.map((book) => {
 							const findBook = shlvesBooks.find((item) => {
 								return item.id === book.id;
@@ -78,9 +81,7 @@ function SearchPage() {
 													value={book.shelf ? book.shelf : value}
 													onChange={(e) => handleChange(e, book)}
 												>
-													<option value="none" disabled>
-														Move to...
-													</option>
+													<option disabled>Move to...</option>
 													<option value="currentlyReading">
 														Currently Reading
 													</option>
